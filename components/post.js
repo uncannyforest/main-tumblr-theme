@@ -120,13 +120,36 @@ export default {
       clear: right;
       display: block;
   }
-  `, mobileStyle: `
-  
+  .caption {
+      margin-top: 32px;
+  }
+  .title {
+  }
+  .texttitle {
+      color: inherit;
+      font-weight: bold;
+  }
+  .t, .title {
+      color: #FFFFFF;
+  }
+  .f {
+      color: {color:Peripheral Text};
+  }
+  a.link {
+      font-weight: bold;
+  }
+
+`, mobileStyle: `
+
       .post-info {
           margin: 0 0 64px;
       }
 
-  `, html: `
+      .cont figure a, .cont img {
+          width: 100%;
+      }
+
+`, html: `
 
               <div class='post'>
               <div class='post-non-info'>
