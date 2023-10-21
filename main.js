@@ -2,6 +2,7 @@ import './style.css'
 
 import ufSite from './components/ufSite'
 import descBox from './components/descBox'
+import permalinkPage from './components/permalinkPage'
 import post from './components/post'
 
 const fullOutput = `
@@ -167,37 +168,14 @@ a:focus, .cont a:focus {
     }
 
 ${descBox.desktopStyle}
+${permalinkPage.desktopStyle}
 
     body:not(.permalink-page) #main {
         margin-top: 32px;
     }
-    .permalink-page #main {
-        font-size: 20px;
-    }
     body:not(.permalink-page) .post {
         border-radius: {text:Border Radius}px;
     }
-    .permalink-page .post>.cont { /* not reblog */
-        padding-top: 77px; /* (937-500)/4 - 32 */
-        padding-bottom: 77px;
-    }
-    .permalink-page .cont {
-        width: fit-content;
-    }
-    .permalink-page #posts>.post>.cont p {
-        width: fit-content;
-        max-width: 719px; /* avg 937, 500 */
-        margin-right: auto;
-    }
-    .permalink-page .npf_row, .permalink-page figure.tmblr-full {
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .permalink-page .cont img {
-        max-height: 719px;
-        width: auto;
-    }
-
     body:not(.permalink-page) nav {
         /*border-radius: 0 0 {text:Border Radius}px {text:Border Radius}px;*/
     }
@@ -214,30 +192,7 @@ ${descBox.desktopStyle}
     grid-row: 2;
 }
 
-.permalink-page .post {
-    background-color: #fff;
-    margin-bottom: 0;
-}
-.permalink-page .post-info.reblog-post, .permalink-page .source, .permalink-page .pinned, .permalink-page .reblog-header {
-    padding: 32px;
-}
-.permalink-page .post-info:not(.reblog-post) {
-    margin: 32px;
-    border-radius: {text:Border Radius}px;
-    background-color: {color:Permalink Page Notes};
-    color: #000;
-}
-.permalink-page .post-info:not(.reblog-post) a {
-    color: {color:Link};
-}
-.permalink-page .forest-boundary.bottom {
-    background-color: #fff;
-    padding-top: 0;
-}
-.permalink-page .forest-boundary.bottom a {
-    color: #000;
-}
-
+${permalinkPage.style}
 ${post.style}
 ${descBox.style}
 
@@ -319,30 +274,6 @@ nav ul {
     color: #fff;
     padding: .8em .8em .5em;
 }
-.permalink-page .subheader-container {
-    background-color: #fff;
-}
-.permalink-page nav a {
-    color: #000;
-}
-.compass {
-    font-family: 'Anticursive';
-}
-.compass.pl-compass {
-    display: none;
-    width: 937px;
-    margin: 0 auto;
-    background-color: #fff;
-    grid-template-columns: repeat(6, 1fr);
-}
-.item.double {
-    grid-column-end: span 2;
-}
-.tag-title {
-    font-size: 36px;
-    color: {color:Background};
-    align-self: center;
-}
 
 @media (max-device-width: 937px) or (max-width: 936px) {
     body {
@@ -390,76 +321,13 @@ figure.tmblr-full img {
     height: auto;
 }
 
-.tag.major.updates {
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.tag {
-    display: none;
-}
-.tag.major.updates {
-    display: unset;
-}
-
 ${ufSite.style}
         </style>
-            <!-- background-color letter-spacing word-spacing
-                margin-left:auto;
-                margin-right:auto
-            -->
         <style type="text/css">{CustomCSS}</style>
 
 <script language="JavaScript">
-function i(obj) {
-    return obj;
-}
-
-async function nav(tag, post) {
-    const response = await fetch(\`https://uncannyforest.com/api/blog/tag/\${i(tag)}/post/\${i(post)}/nav\`)
-    const data = await response.json();
-
-    document.querySelector('.tag-title').innerText = tag;
-    const compasses = document.getElementsByClassName('pl-compass')
-    for (let compass of compasses) {
-        compass.style.display = 'grid';
-        if (data.older) {
-            compass.querySelector('.older').setAttribute('href', data.older.url);
-            compass.querySelector('.oldest').setAttribute('href', data.oldest.url);
-        } else {
-            compass.querySelector('.older').style.visibility = 'hidden';
-            compass.querySelector('.oldest').style.visibility = 'hidden';
-        }
-        if (data.newer) {
-            compass.querySelector('.newer').setAttribute('href', data.newer.url);
-            compass.querySelector('.newest').setAttribute('href', data.newest.url);
-        } else {
-            compass.querySelector('.newer').style.visibility = 'hidden';
-            compass.querySelector('.newest').style.visibility = 'hidden';
-        }
-    }
-}
-
-
-// OTHER
 
 ${descBox.js}
-
-function latestBlogUpdateParse(xmlStr) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlStr, "application/xml");
-    const date = doc.querySelector('pubDate').textContent;
-    const moYr = /[A-Za-z]+ [0-9][0-9][0-9][0-9]/g.exec(date)[0];
-    const resultStr = " (" + moYr + ")";
-    document.getElementById('major-date').appendChild( document.createTextNode(resultStr));
-}
-
-function latestBlogUpdate() {
-    fetch("https://blog.uncannyforest.com/tagged/major+updates/rss")
-      .then(function(response) {
-        response.text().then(latestBlogUpdateParse);
-      });
-}
 
 </script>
     </head>
@@ -490,21 +358,8 @@ ${ufSite.header}
         </div>
     </nav>
 </div>
-    <div class="compass pl-compass">
-        <div class="item"><a class="oldest">
-            <img src="https://uncannyforest.com/images/nav-first-2x.png" class="comic-nav">
-        </a></div>
-        <div class="item"><a class="older">
-            <img src="https://uncannyforest.com/images/nav-prev-2x.png" class="comic-nav">
-        </a></div>
-        <div class="item double tag-title"></div>
-        <div class="item"><a class="newer">
-            <img src="https://uncannyforest.com/images/nav-next-2x.png" class="comic-nav">
-        </a></div>
-        <div class="item"><a class="newest">
-            <img src="https://uncannyforest.com/images/nav-last-2x.png" class="comic-nav">
-        </a></div>
-    </div>
+
+${permalinkPage.compassHtml}
 
     <div id="main">
         {Block:IfTitle}
@@ -541,21 +396,8 @@ ${post.html}
     </div>
 <div class="forest-boundary bottom">
 
-<div class="compass pl-compass">
-    <div class="item"><a class="oldest">
-        <img src="https://uncannyforest.com/images/nav-first-2x.png" class="comic-nav">
-    </a></div>
-    <div class="item"><a class="older">
-        <img src="https://uncannyforest.com/images/nav-prev-2x.png" class="comic-nav">
-    </a></div>
-    <div class="item double"></div>
-    <div class="item"><a class="newer">
-        <img src="https://uncannyforest.com/images/nav-next-2x.png" class="comic-nav">
-    </a></div>
-    <div class="item"><a class="newest">
-        <img src="https://uncannyforest.com/images/nav-last-2x.png" class="comic-nav">
-    </a></div>
-</div>
+${permalinkPage.compassHtml}
+
 <div class="compass blog-compass">
   <div class="item">
 
@@ -577,23 +419,7 @@ ${post.html}
 ${ufSite.footer}
 </div>
 <script>
-let params = new URLSearchParams(window.location.search);
-if (params.has('tag')) {
-    nav(params.get('tag'), '{PostID}')
-
-    if (params.get('tag') === 'local mysteries') {
-        document.querySelector('a.lm').classList.add('selected')
-    } else if (params.get('tag') === 'trees with faces') {
-        document.querySelector('a.trees').classList.add('selected')
-    } else {
-        document.querySelector('a.blog').classList.add('selected')
-        document.querySelector('.subheader-container').style.display = 'flex';
-    }
-} else {
-    document.querySelector('a.blog').classList.add('selected')
-    document.querySelector('.subheader-container').style.display = 'flex';
-
-}
+${permalinkPage.js}
 </script>
     </body>
 </html>

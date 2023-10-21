@@ -139,6 +139,15 @@ export default {
       font-weight: bold;
   }
 
+  .tag {
+      display: none;
+  }
+  .tag.major.updates {
+      font-size: 30px;
+      font-weight: bold;
+      display: unset;
+  }
+
 `, mobileStyle: `
 
       .post-info {
