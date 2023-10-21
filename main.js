@@ -1,5 +1,9 @@
 import './style.css'
 
+import mainsite from './components/mainsite'
+import mailchimp from './components/mailchimp'
+import post from './components/post'
+
 const fullOutput = `
 <!--
 
@@ -274,127 +278,8 @@ a:focus, .cont a:focus {
     color: #000;
 }
 
+${post.style}
 
-.post {
-    margin-bottom: 32px;
-    overflow: hidden;
-}
-
-.cont {
-    padding: 32px;
-    color: #000;
-    background-color: #fff;
-    overflow: hidden;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
-    clear: both;
-}
-.cont p {
-    white-space: pre-wrap;
-}
-#posts>.post .cont p {
-    margin: 32px 0;
-}
-#posts>.post .cont p:first-child,
-#posts>.post .cont p:empty + p,
-#posts>.post .cont p:empty + div {
-    margin-top: 0;
-}
-#posts>.post .cont p:last-child {
-    margin-bottom: 0;
-}
-#posts>.post .cont p:empty {
-    display: none;
-}
-.cont.photo img {
-    max-width: 100%;
-    border-radius: {text:Border Radius}px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-.tumblr_video_container {
-  position: relative;
-  padding-bottom: 75%;
-  height: 0 !important;
-  width: auto !important;
-  overflow: hidden;
-}
-.tumblr_video_container iframe, .tumblr_video_container object, .tumblr_video_container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.source, .pinned {
-    text-align: right;
-    float: right;
-}
-.source a, .pinned a {
-    padding: 8px 11px;
-    background-color: {color:Sidebar};
-    display: block;
-}
-.permalink-page .source:not(:has(~ .reblog)),
-.permalink-page .pinned:not(:has(~ .reblog)),
-.permalink-page .source:not(:has(~ .reblog)) a,
-.permalink-page .pinned:not(:has(~ .reblog)) a {
-    background-color: white;
-    color: #60a080;
-}
-.post-non-info:has(.pinned) ~ .post-info {
-    display: none;
-}
-.reblog-header a {
-    padding: 8px 11px 8px 0;
-}
-.reblog-header {
-    padding-left: 11px;
-    display: flex;
-    align-items: center;
-}
-.user-uncannyforest.reblog-header::before {
-    content: ' ';
-    background-image: url({image:Serious Signature});
-    background-size: cover;
-    display: block;
-    width: 24px;
-    height: 24px;
-}
-.user-uncannyforest.reblog-header a {
-    padding: 8px 11px;
-}
-.reblog.cont {
-    width: auto;
-}
-.reblog:not(.user-uncannyforest:last-child).cont-container {
-    padding: 0 32px 0;
-}
-.reblog.user-uncannyforest:last-child.cont-container {
-    background-color: white;
-}
-.reblog:not(.user-uncannyforest:last-child) .cont {
-    border-radius: {text:Border Radius}px;
-}
-.user-uncannyforest:last-child.cont {
-    border-radius: 0;
-}
-
-.post-info {
-    padding: 8px 11px;
-    margin: 0;
-}
-.permalink {
-    float: right;
-    text-align: right;
-}
-.post-info::after {
-    content: '';
-    clear: right;
-    display: block;
-}
 .widget {
     margin-top: 32px;
     margin-bottom: 118px; /* 86 + 32 */
@@ -823,9 +708,7 @@ nav ul {
         display: block;
     }
 
-    .post-info {
-        margin: 0 0 64px;
-    }
+${post.mobileStyle}
 
     .cont figure a, .cont img {
         width: 100%;
@@ -891,183 +774,8 @@ figure.tmblr-full img {
     display: unset;
 }
 
-            /* from main site */
-
-
-body {
-    margin-top: 12px;
-    margin-bottom: 12px;
-}
-
-.forest-boundary {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.plains {
-  padding: 60px 0 0 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.typed {
-  padding: 0px;
-}
-
-.hf {
-  width: 100%;
-  display: block;
-}
-
-.subheader a.selected {
-  color: #60a080;
-  text-decoration: none;
-}
-a:hover, .subheader a:hover, .subheader a.selected:hover {
-  color: #c0c000;
-}
-a:focus, .subheader a:focus, .subheader a.selected:active {
-  color: #ff8000;
-}
-
-nav a.selected img {
-  filter: url(#selected);
-}
-nav a:not([href^='#']):hover img {
-  filter: url(#hover);
-}
-nav a:not([href^='#']):active img {
-  filter: url(#click);
-}
-body:not(.permalink-page) .subheader-container a:not([href^='#']):hover li {
-  filter: url(#hover-dark);
-}
-body:not(.permalink-page) .subheader-container a:not([href^='#']):active li {
-  filter: url(#click-dark);
-}
-.permalink-page .subheader-container img {
-  filter: url(#black);
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.map img {
-  height: 30px;
-}
-.subheader a {
-  font-family: 'Anticursive';
-  font-size: 24px;
-  color: #fff;
-  margin: 0;
-  padding: .8em .8em .5em;
-}
-.subheader a.selected {
-  color: #60a080;
-}
-.subheader a.serious {
-    padding-top: 0.6em;
-    padding-bottom: 0.7em;
-}
-.serious li {
-    font-size: .7em;
-    font-family: Cormorant;
-    line-height: 1;
-}
-
-.forest-boundary.top {
-    padding-bottom: 16px;
-}
-
-.forest-boundary.bottom {
-    padding-top: 32px;
-    background: {color:Sidebar};
-}
-
-.compass {
-  display: grid;
-  word-spacing: 1.4sem;
-  padding: 0 0.7em;
-  font-weight: bold;
-  padding: 0;
-}
-.blog-compass {
-    grid-template-columns: repeat(2, 1fr);
-}
-.compass a {
-    color: #ffffff;
-}
-
-@media (max-device-width: 599px),(max-width: 599px) and (orientation: portrait) {
-  .forest-boundary, .plains {
-    box-sizing: border-box;
-  }
-  .forest-boundary, .plains {
-    width: 100%;
-  }
-}
-
-@media (min-device-width: 600px) and (min-width: 600px) {
-  .forest-boundary, .plains {
-    box-sizing: border-box;
-  }
-  .forest-boundary, .plains {
-    max-width: 937px;
-  }
-}
-
-/* line 18, /home/rails/uf/app/assets/stylesheets/comics.scss */
-.item {
-  text-align: center;
-}
-
-/* line 22, /home/rails/uf/app/assets/stylesheets/comics.scss */
-img.comic-nav {
-  height: 90px;
-  vertical-align: middle;
-}
-            /* from MailChimp */
-
-            #signup {
-                margin-top: 32px;
-                border: 1px solid {color:Peripheral Text};
-                border-radius: 5px;
-                max-width: 277px;
-                font-size: 14px;
-            }
-            #mc_embed_signup .foot {
-                display: flex;
-            }
-            #signup form, #signup #subscribe, #signup .brandingLogo {
-                margin: 0;
-            }
-            #signup form {
-                padding-top: 0;
-                padding-bottom: 0;
-            }
-            #signup .brandingLogo {
-                margin: 0;
-            }
-            #mc_embed_signup{clear:left;}
-        	#mc_embed_signup h2 {
-        	    font-size: 1.2em;
-        	}
-        	#mc_embed_signup .button {
-                background-color: #508068;
-            }
-        	#mc_embed_signup .button:hover {
-                background-color: #80c0a0;
-            }
-            #mc_embed_signup .mc-field-group.input-group input {
-                width: 15px;
-                height: 15px;
-                vertical-align: top;
-                margin-top: 0px;
-            }
+${mainsite.style}
+${mailchimp.style}
         </style>
             <!-- background-color letter-spacing word-spacing
                 margin-left:auto;
@@ -1135,24 +843,7 @@ function latestBlogUpdate() {
 
 <div class="forest-boundary">
     <nav class="header">
-        <img src="https://uncannyforest.com/images/canopy-v2-2x.png" class="hf">
-        <ul class="map">
-            <li><a href="https://uncannyforest.com/welcome_home">
-                <img src="https://uncannyforest.com/images/page-comics-2x.png">
-            </a></li>
-            <li><a href="https://uncannyforest.com/blog/tag/trees with faces/latest" class="trees">
-                <img src="https://uncannyforest.com/images/page-trees-2x.png">
-            </a></li>
-            <li><a href="https://uncannyforest.com/blog/tag/local mysteries/latest" class="lm">
-                <img src="https://uncannyforest.com/images/page-localmysteries-2x.png">
-            </a></li>
-            <li><a href="/" class="blog">
-                <img src="https://uncannyforest.com/images/page-blog-2x.png">
-            </a></li>
-            <li><a class="" href="https://uncannyforest.com/about">
-                <img src="https://uncannyforest.com/images/page-about-2x.png">
-            </a></li>
-        </ul>
+${mainsite.header}
         <div class="subheader-container">
             <ul class="subheader">
                 {block:Pages}
@@ -1243,52 +934,7 @@ function latestBlogUpdate() {
                     </div>
 
                     <div id="signup">
-            <!-- Begin Mailchimp Signup Form -->
-
-<div id="mc_embed_signup">
-    <form action="https://uncannyforest.us20.list-manage.com/subscribe/post?u=fe84bdbc1641c9d3d9c5deb1f&amp;id=a111160619&amp;f_id=005d39e7f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-        <div id="mc_embed_signup_scroll">
-        <h2>Subscribe to updates via email!</h2>
-<div class="mc-field-group">
-	<label for="mce-EMAIL">Email Address (required)
-</label>
-	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required>
-	<span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
-</div>
-<div class="mc-field-group input-group">
-    <strong>Which additional updates do you want to receive? </strong>
-    <ul><li>
-    <input type="checkbox" value="2" name="group[282078][2]" id="mce-group[282078]-282078-0" checked>
-    <label for="mce-group[282078]-282078-0">Weekly digest of gamedev posts (when I'm doing that)</label>
-</li>
-<li>
-    <input type="checkbox" value="4" name="group[282078][4]" id="mce-group[282078]-282078-1" checked>
-    <label for="mce-group[282078]-282078-1">New comics</label>
-</li>
-<li>
-    <input type="checkbox" value="1" name="group[282078][1]" id="mce-group[282078]-282078-2" checked="">
-    <label for="mce-group[282078]-282078-2">Photography and writing</label>
-</li>
-</ul>
-    <span id="mce-group[282078]-HELPERTEXT" class="helper_text"></span>
-</div>
-	<div id="mce-responses" class="clear foot">
-		<div class="response" id="mce-error-response" style="display:none"></div>
-		<div class="response" id="mce-success-response" style="display:none"></div>
-	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_fe84bdbc1641c9d3d9c5deb1f_a111160619" tabindex="-1" value=""></div>
-        <div class="optionalParent">
-            <div class="clear foot">
-                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
-                <p class="brandingLogo"><a href="https://eepurl.com/hQLWRD" title="Mailchimp - email marketing made easy and fun"><img src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_light_dtp.svg"></a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-</div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-<!--End mc_embed_signup-->
+${mailchimp.html}
                     </div>
                 </div>
 
@@ -1334,7 +980,7 @@ function latestBlogUpdate() {
                                     </div>
                                     {/block:NotReblog}
                                     <div class="like-content">
- <div class='post'> {block:ContentSource} <div class="source dark"> <a href="{SourceURL}">{lang:Source}:{SourceTitle}</a> </div> {/block:ContentSource} {block:Text} {block:RebloggedFrom} <div class="reblogs"> {block:Reblogs} <div class="reblog user-{Username}"> <div class="reblog-header dark"> {block:IsActive} <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}:</a> {/block:IsActive} {block:IsDeactivated} <span class="inactive post-tumblelog-name">{Username}:</span> {/block:IsDeactivated} </div> <div class="cont-container dark"> <div class="cont text"> {Body} </div> </div> </div> {/block:Reblogs} </div> {/block:RebloggedFrom} {block:NotReblog} <div class="cont text"> {block:TagPage} <div class="tag {Tag}"> {DayOfMonth} {Month} {Year} </div> {/block:TagPage} {block:Title} <p class="texttitle"> <a href="{Permalink}" class="texttitle">{Title}</a> </p> {/block:Title} {Body} </div> {/block:NotReblog} {/block:Text} {block:Photo} {block:NotReblog} <div class="cont photo"> {block:PermalinkPage} <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"> <!-- trying to load highres {/block:PermalinkPage} <img src="{PhotoURL-500}" alt="{PhotoAlt}"> {block:PermalinkPage} --> {/block:PermalinkPage} {block:Caption} {Caption} {/block:Caption} </div> {/block:NotReblog} {block:RebloggedFrom} <div class="reblogs"> <div class="reblog media user-{ReblogRootName}"> <div class="reblog-header dark"> <a target="_blank" class="post-tumblelog-name" href="{ReblogRootURL}">{ReblogRootName}:</a> </div> <div class="cont-container dark"> <div class="cont photo"> {Block:PermalinkPage} <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"> <!-- trying to load highres {/block:PermalinkPage} <img src="{PhotoURL-500}" alt="{PhotoAlt}"> {block:PermalinkPage} --> {/block:PermalinkPage} {block:Reblogs} {block:isOriginalEntry} <!-- isOriginalEntry {/block:isOriginalEntry} </div> </div> </div> <div class="reblog user-{Username}"> <div class="reblog-header dark"> {block:IsActive} <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}:</a> {/block:IsActive} {block:IsDeactivated} <span class="inactive post-tumblelog-name">{Username}:</span> {/block:IsDeactivated} </div> <div class="cont-container dark"> <div class="cont photo"> {block:isOriginalEntry} --> {/block:isOriginalEntry} {Body} {/block:Reblogs} </div> </div> </div> </div> {/block:RebloggedFrom} {/block:Photo} {block:Photoset} <div class="cont photoset"> {Photoset-500} {block:Caption} <div class="caption">{Caption}</div> {/block:Caption} </div> {/block:Photoset} {block:Quote} <div class="cont quote"> "{Quote}" {block:Source} <div class="quote-source">{Source}</div> {/block:Source} </div> {/block:Quote} {block:Link} <div class="cont link"> <a href="{URL}" class="link" {Target}>{Name}</a> <br /><br /> {block:Description} <div class="description">{Description}</div> {/block:Description} </div> {/block:Link} {block:Chat} <div class="cont chat"> {block:Title} <h3><a href="{Permalink}">{Title}</a></h3> {/block:Title} <ul class="chat"> {block:Lines} <li class="{Alt} user_{UserNumber}"> {block:Label} <span class="label">{Label}</span> {/block:Label} {Line} </li> {/block:Lines} </ul> </div> {/block:Chat} {block:Video} {block:NotReblog} <div class="cont video"> {Video-500} {block:Caption} {Caption} {/block:Caption} </div> {/block:NotReblog} {block:RebloggedFrom} <div class="reblogs"> <div class="reblog media user-{ReblogRootName}"> <div class="reblog-header dark"> <a target="_blank" class="post-tumblelog-name" href="{ReblogRootURL}">{ReblogRootName}:</a> </div> <div class="cont-container dark"> <div class="cont video"> {Video-500} {block:Reblogs} {block:isOriginalEntry} <!-- {/block:isOriginalEntry} </div> </div> </div> <div class="reblog user-{Username}"> <div class="reblog-header dark"> {block:IsActive} <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}:</a> {/block:IsActive} {block:IsDeactivated} <span class="inactive post-tumblelog-name">{Username}:</span> {/block:IsDeactivated} </div> <div class="cont-container dark"> <div class="cont video"> {block:isOriginalEntry} --> {/block:isOriginalEntry} {Body} {/block:Reblogs} </div> </div> </div> </div> {/block:RebloggedFrom} {/block:Video} {block:Audio} <div class="cont audio"> {AudioPlayerBlack} {block:Caption} <div class="caption">{Caption}</div> {/block:Caption} </div> {/block:Audio} <div class="post-info dark {block:RebloggedFrom}reblog-post{/block:RebloggedFrom}" id="{PostID}"> <div class="permalink">&nbsp;&nbsp;&nbsp; {block:PermalinkPage} {DayOfMonth} {Month} {Year}{/block:Date}<br> (<a href="https://www.tumblr.com/uncannyforest/{PostID}" class="f">open in Tumblr to interact with this post</a>) <!-- {/block:PermalinkPage} <a href="{Permalink}" class="f">{block:NoteCount}{NoteCountWithLabel}{/block:NoteCount}{block:Date}{block:NoteCount}, {/block:NoteCount}{DayOfMonth} {Month} {Year}{/block:Date}</a> {block:PermalinkPage} --> {/block:PermalinkPage} </div> <div class="reblog-and-tags"> {block:Reblog} via <a href="{ReblogParentURL}" class="f">{ReblogParentName}</a><br /> {/block:Reblog} {block:Tags}<a href="{TagURL}" class="f">{Tag}</a>&nbsp;&nbsp; {/block:Tags} </div> {block:PostNotes} <br><br> <div class="notecontainer">{PostNotes}</div> {/block:PostNotes} </div> </div>
+${post.html.replace(/\s+/g," ")}
 
                                         </div>
                                         <div class="like-footer">
@@ -1360,7 +1006,7 @@ function latestBlogUpdate() {
                     <img src="{image:Signature Bright}" class="hover">
                 </a>
                 <div class="secret-message-content">
-                    <a href="https://blog.uncannyforest.com/post/29914344977/i-keep-boogie-on" />
+                    <a href="https://blog.uncannyforest.com/post/29914344977/i-keep-boogie-on" >
                         {text:Secret Message}
                     </a>
                 </div>
@@ -1369,247 +1015,7 @@ function latestBlogUpdate() {
         <div id="posts">
         {block:Posts}
 
-            <div class='post'>
-            <div class='post-non-info'>
-            {block:ContentSource}
-                <div class="source dark">
-                    <a href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
-                </div>
-            {/block:ContentSource}
-            {block:PinnedPostLabel}
-                <div class="pinned dark">
-                    <a href="https://www.tumblr.com/uncannyforest/{PostID}" class="f">
-                    *{PinnedPostLabel}*
-                    </a>
-                </div>
-            {/block:PinnedPostLabel}
-            {block:Text}
-
-
-            {block:RebloggedFrom}
-            {block:Reblogs}
-                    <div class="reblog-header dark reblog user-{Username}">
-                        {block:IsActive}
-                        <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}:</a>
-                        {/block:IsActive}
-                        {block:IsDeactivated}
-                        <span class="inactive post-tumblelog-name">{Username}:</span>
-                        {/block:IsDeactivated}
-                    </div>
-                    <div class="cont-container dark reblog user-{Username}">
-                        <div class="cont text">
-                            {Body}
-                        </div>
-                    </div>
-            {/block:Reblogs}
-            {/block:RebloggedFrom}
-            {block:NotReblog}
-                <div class="cont text">
-                    {block:TagPage}
-                        <div class="tag {Tag}">
-                            {DayOfMonth} {Month} {Year}
-                        </div>
-                    {/block:TagPage}
-                    {block:Title}
-                    <p class="texttitle">
-                        <a href="{Permalink}" class="texttitle">{Title}</a>
-                    </p>
-                    {/block:Title}
-                    {Body}
-                </div>
-
-            {/block:NotReblog}
-            {/block:Text}
-
-            {block:Photo}
-            {block:NotReblog}
-                <div class="cont photo">
-                    {block:PermalinkPage}
-                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
-                    <!-- trying to load highres
-                    {/block:PermalinkPage}
-                    <img src="{PhotoURL-500}" alt="{PhotoAlt}">
-                    {block:PermalinkPage}
-                    -->
-                    {/block:PermalinkPage}
-
-                    {block:Caption}
-                    {Caption}
-                    {/block:Caption}
-                </div>
-            {/block:NotReblog}
-
-            {block:RebloggedFrom}
-                    <div class="reblog-header dark reblog media user-{ReblogRootName}">
-                        <a target="_blank" class="post-tumblelog-name" href="{ReblogRootURL}">{ReblogRootName}:</a>
-                    </div>
-                    <div class="cont-container dark reblog media user-{ReblogRootName}">
-                        <div class="cont photo">
-                            {Block:PermalinkPage}
-                            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
-                            <!-- trying to load highres
-                            {/block:PermalinkPage}
-                            <img src="{PhotoURL-500}" alt="{PhotoAlt}">
-                            {block:PermalinkPage}
-                            -->
-                            {/block:PermalinkPage}
-            {block:Reblogs}
-                    {block:isOriginalEntry}
-                    <!-- isOriginalEntry
-                    {/block:isOriginalEntry}
-                        </div>
-                    </div>
-                    <div class="reblog-header dark reblog user-{Username}">
-                        {block:IsActive}
-                        <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}:</a>
-                        {/block:IsActive}
-                        {block:IsDeactivated}
-                        <span class="inactive post-tumblelog-name">{Username}:</span>
-                        {/block:IsDeactivated}
-                    </div>
-                    <div class="cont-container dark reblog media user-{ReblogRootName}">
-                        <div class="cont photo">
-                    {block:isOriginalEntry}
-                    -->
-                    {/block:isOriginalEntry}
-                            {Body}
-            {/block:Reblogs}
-                        </div>
-                    </div>
-            {/block:RebloggedFrom}
-            {/block:Photo}
-
-                {block:Photoset}
-                    <div class="cont photoset">
-                        {Photoset-500}
-
-                        {block:Caption}
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                    </div>
-                {/block:Photoset}
-
-                {block:Quote}
-                    <div class="cont quote">
-                        "{Quote}"
-
-                        {block:Source}
-                            <div class="quote-source">{Source}</div>
-                        {/block:Source}
-                    </div>
-                {/block:Quote}
-
-                {block:Link}
-                    <div class="cont link">
-                        <a href="{URL}" class="link" {Target}>{Name}</a>
-                        <br /><br />
-                        {block:Description}
-                            <div class="description">{Description}</div>
-                        {/block:Description}
-                    </div>
-                {/block:Link}
-
-                {block:Chat}
-                    <div class="cont chat">
-                        {block:Title}
-                            <h3><a href="{Permalink}">{Title}</a></h3>
-                        {/block:Title}
-
-                        <ul class="chat">
-                            {block:Lines}
-                                <li class="{Alt} user_{UserNumber}">
-                                    {block:Label}
-                                        <span class="label">{Label}</span>
-                                    {/block:Label}
-
-                                    {Line}
-                                </li>
-                            {/block:Lines}
-                        </ul>
-                    </div>
-                {/block:Chat}
-
-            {block:Video}
-            {block:NotReblog}
-                <div class="cont video">
-                    {Video-500}
-
-                    {block:Caption}
-                    {Caption}
-                    {/block:Caption}
-                </div>
-            {/block:NotReblog}
-            {block:RebloggedFrom}
-                    <div class="reblog-header dark reblog media user-{ReblogRootName}">
-                        <a target="_blank" class="post-tumblelog-name" href="{ReblogRootURL}">{ReblogRootName}:</a>
-                    </div>
-                    <div class="cont-container dark reblog media user-{ReblogRootName}">
-                        <div class="cont video">
-                            {Video-500}
-            {block:Reblogs}
-                    {block:isOriginalEntry}
-                    <!--
-                    {/block:isOriginalEntry}
-                        </div>
-                    </div>
-                    <div class="reblog-header dark reblog media user-{ReblogRootName}">
-                        {block:IsActive}
-                        <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}:</a>
-                        {/block:IsActive}
-                        {block:IsDeactivated}
-                        <span class="inactive post-tumblelog-name">{Username}:</span>
-                        {/block:IsDeactivated}
-                    </div>
-                    <div class="cont-container dark reblog media user-{ReblogRootName}">
-                        <div class="cont video">
-                    {block:isOriginalEntry}
-                    -->
-                    {/block:isOriginalEntry}
-                            {Body}
-            {/block:Reblogs}
-                        </div>
-                    </div>
-            {/block:RebloggedFrom}
-            {/block:Video}
-
-                {block:Audio}
-                    <div class="cont audio">
-                        {AudioPlayerBlack}
-
-                        {block:Caption}
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                    </div>
-                {/block:Audio}
-                </div>
-                <div class="post-info dark {block:RebloggedFrom}reblog-post{/block:RebloggedFrom}" id="{PostID}">
-                    <div class="permalink">&nbsp;&nbsp;&nbsp;
-                    {block:PermalinkPage}
-                        {DayOfMonth} {Month} {Year}{/block:Date}<br>
-                        (<a href="https://www.tumblr.com/uncannyforest/{PostID}" class="f">open in Tumblr to interact with this post</a>)
-                    <!--
-                    {/block:PermalinkPage}
-                        <a href="{Permalink}{block:TagPage}?tag={Tag}{/block:TagPage}" class="f">{block:NoteCount}{NoteCountWithLabel}{/block:NoteCount}{block:Date}{block:NoteCount}, {/block:NoteCount}{DayOfMonth} {Month} {Year}{/block:Date}</a>
-                    {block:PermalinkPage}
-                    -->
-                    {/block:PermalinkPage}
-                    </div>
-
-                    <div class="reblog-and-tags">
-
-                        {block:Reblog}
-                             via <a href="{ReblogParentURL}" class="f">{ReblogParentName}</a><br />
-                        {/block:Reblog}
-                        {block:Tags}<a href="{TagURL}" class="f">{Tag}</a>&nbsp;&nbsp; {/block:Tags}
-
-                    </div>
-
-                {block:PostNotes}
-                    <br><br>
-                    <div class="notecontainer">{PostNotes}</div>
-                {/block:PostNotes}
-                </div>
-            </div>
+${post.html}
 
             {/block:Posts}
 
@@ -1666,11 +1072,7 @@ function latestBlogUpdate() {
   </div>
   <div class="item"></div>
 </div>
-    <div class="footer">
-
-        <img class="hf" src="https://uncannyforest.com/images/forest-floor-color-2x.png">
-
-    </div>
+${mainsite.footer}
 </div>
 <script>
 let params = new URLSearchParams(window.location.search);
