@@ -45,10 +45,10 @@ export default {
   nav a:not([href^='#']):active img {
     filter: url(#click);
   }
-  body:not(.permalink-page) .subheader-container a:not([href^='#']):hover li {
+  body:not(.permalink-page) .subheader-container a:not([href^='#']):hover {
     filter: url(#hover-dark);
   }
-  body:not(.permalink-page) .subheader-container a:not([href^='#']):active li {
+  body:not(.permalink-page) .subheader-container a:not([href^='#']):active {
     filter: url(#click-dark);
   }
   .permalink-page .subheader-container img {

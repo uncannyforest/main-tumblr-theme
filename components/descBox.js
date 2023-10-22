@@ -23,8 +23,13 @@ ${likes.style}
       grid-column: 2;
       grid-row: 2;
       border-radius: {text:Border Radius}px;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      padding: 32px 0;
   }
   .secret-message {
+      margin-left: -32px;
       width: 100%;
       position: absolute;
       bottom: 0;
@@ -32,7 +37,7 @@ ${likes.style}
       flex-direction: column;
       justify-content: center;
   }
-  .secret-message img {
+  .inner .secret-message img {
       margin: 0 auto;
       width: 25%;
       display: none;
@@ -86,65 +91,27 @@ ${likes.style}
       margin-top:16px;
       margin-bottom:16px;
   }
-  label.toggle {
-      display: block;
-      overflow: hidden;
+  .toggle {
+    padding-left: 32px;
+    width: 50%;
+    box-sizing: border-box;
   }
-  input.toggle {
+  .toggle:has(input:checked) {
+    display: none;
+  }
+  .toggle input {
       display: none;
+  }
+  .toggle:has(input:not(:checked))+* {
+    display: none;
   }
   .sidebar-search {
       overflow: hidden;
   }
-  #search ~ .toggle {
-      height: 21px;
-      transition: height .25s,
-          height .25s step-start;
-  }
-  #search:checked ~ .sidebar-search {
-      height: 34px;
-      transition: height .25s;
-  }
-  .sidebar-search,
-  #search:checked ~ .toggle {
-      height: 0;
-      transition:  height .25s;
-  }
-  .subscribe {
-      overflow: hidden;
-  }
-  #subscribe ~ .toggle {
-      height: 21px;
-      transition: height 1s,
-          height 1s step-start;
-  }
-  #subscribe:checked ~ .subscribe {
-      height: 376px;
-      transition: height 1s;
-  }
-  .subscribe,
-  #subscribe:checked ~ .toggle {
-      height: 0;
-      transition:  height 1s;
-  }
-  .sidebar-links, .theme {
-      overflow: hidden;
-  }
-  #theme:checked ~ .theme {
-      height: 71px;
-      transition: height 1s;
-  }
-  .theme {
-      height: 0;
-      transition:  height 1s;
-  }
-  #theme:checked ~ .toggle {
-      color: {color:Peripheral Text};
-      margin-left: -1.15em;
-      transition:  margin-left .5s, color 2s;
-  }
   .inner img {
       width: 100%;
+      margin-top: 1em;
+      margin-bottom: 1em;
   }
   .portrait img{
       display: block;
@@ -153,17 +120,17 @@ ${likes.style}
   .blog-description {
       font-style: italic;
   }
-  .tag-list {
+  .tree-decor {
     text-align: center;
     padding: 0;
   }
-  .tag-list li {
+  .tree-decor li {
     display: inline;
   }
-  .tag-list li a {
+  .tree-decor li a {
     white-space: nowrap;
   }
-  .tag-list li::after {
+  .tree-decor li::after {
     content: " ";
     word-spacing: 1em;
     background-image: url('https://www.svgrepo.com/show/481547/tree.svg');
@@ -178,14 +145,18 @@ ${mailchimp.style}
 `, desktopStyle: `
 
       #desc-box {
-          background: url({image:Slug})
-              top 32px center / auto no-repeat
-              {color:Sidebar};
           margin-bottom: 32px;
       }
 
-      .portrait {
+      .deets {
+          background: url({image:Slug})
+              top 32px center / auto no-repeat
+              {color:Sidebar};
+      }
+
+      .deets>.portrait {
           text-align: center;
+          margin-top: 0;
       }
 
       .deets>* {
@@ -266,95 +237,74 @@ function clickSearch() {
 
 `, html: `
           <div id="desc-box" class="dark">
-
+              <label class="toggle">
+                <input id="deets" type="radio" name="desc-box-section" checked />
+                ▸ &nbsp; About
+              </label>
               <div class="deets">
                   <div class="portrait">
                       <a href="/">
                       <img src="{PortraitURL-128}"/>
                       </a>
                   </div>
+                  <ul class="inner sidebar-links-container tree-decor">
+                      <li class="sidebar-links"><a href="/archive" class="t">archive</a></li>
+                      <li class="sidebar-links"><a href="/random" class="t">random</a></li>
+                      {block:AskEnabled}<li class="sidebar-links"><a href="/ask" class="t">asks/say hi!</a></li>{/block:AskEnabled}
+                  </ul>
                   <div class="blog-description" />
                       <div>{text:Short Description}</div>
                   </div>
                   <div class="extra-description" />
                       {text:Extra Description}
                   </div>
-                  <ul class="tag-list" />
+                  <div class="extra-description" />
+                      I made this theme <i>myself</i> and I am very proud of it. if you want to use it, nag me to put it in the theme garden, maybe in <a href="/ask">my asks</a>
+                  </div>
+              </div>
+              <label class="toggle">
+                <input id="search" type="radio" name="desc-box-section" />
+                ▸ &nbsp; Search
+              </label>
+              <div class="inner">
+                  <div class="sidebar-search">
+                      <form action="/search" method="get" id="searchForm">
+                          <input type="text" name="q" value="" onclick="clickSearch();" id="searchInput" />
+                      </form>
+                  </div>
+                  <ul class="tag-list tree-decor" />
                       {text:Tag List}
                   </ul>
-              </div>
-              <div class="inner sidebar-links-container">
-                  {block:AskEnabled}<div class="sidebar-links">
-                      <a href="/ask" class="t">Talk to me, I don't bite :) <span class='subtext'>forests don't have mouths</span></a>
-                  </div>{/block:AskEnabled}
-                  <div class="sidebar-links">
-                      <a href="/random" class="t">Random post</a>
-                  </div>
-                  <div class="sidebar-links">
-                      <input id="search" type="checkbox" class="toggle">
-                      <label for="search" class="toggle" onclick="document.getElementById('searchInput').focus()">▸ &nbsp; Search posts and tags</label>
-
-                      <div class="sidebar-search">
-
-                          <form action="/search" method="get" id="searchForm">
-                              <input type="text" name="q" value="" onclick="clickSearch();" id="searchInput" />
-                          </form>
-                          <!--<div id="crackers-box"><a href="https://blog.uncannyforest.com/tagged/my%20parakeet%20Crackers"></a></div>-->
-
-                      </div>
-                  </div>
-                  <div class="sidebar-links">
-                  <input id="subscribe" type="checkbox" class="toggle">
-                  <label for="subscribe" class="toggle">▸ &nbsp; Subscribe via RSS or email</label>
-                  <div class="subscribe" class="sidebar-links-container ">
-                      <div class="sidebar-links">
-                          <a href="{RSS}" class="t">RSS link for your feed reader</a> (<a href="https://www.tumblr.com/knuckleheadmcspazotron/708111563312283648" class="t">what?</a>)
-                      </div>
-
-                      <div id="signup">
-  ${mailchimp.html}
-                      </div>
-                  </div>
-
-                  <!-- >
-
-                  {block:IfShowPeopleIFollow}
-                      {block:Following}
-                          <div class="heading" id="following">{lang:Following}</div>
-                          <div class="content" id="following-avatars">
-                              {block:Followed}<a href="{FollowedURL}"><img src="{FollowedPortraitURL-40}" /></a>{/block:Followed}
-                          </div>
-                      {/block:Following}
-                  {/block:IfShowPeopleIFollow}
-
-                  </div>
-          <!-- > </!-->
-
-                  <div class="sidebar-links">
-                  <input id="theme" type="checkbox" class="toggle">
-                  <label for="theme" class="toggle">▸ &nbsp; I made this theme <i>myself!</i></label>
-                  <div class="theme extra-description" />
-                      and I am very proud of it. if you want to use it, nag me to put it in the theme garden, maybe in <a href="/ask">my asks</a>
-                  </div>
-                  </div>
                   <img src="{image:Hearts}">
+              </div>
+              <label class="toggle">
+                <input id="subscribe" type="radio" name="desc-box-section" />
+                ▸ &nbsp; Subscribe
+              </label>
+              <div class="inner">
+                  <a href="{RSS}" class="t">RSS link for your feed reader</a> (<a href="https://www.tumblr.com/knuckleheadmcspazotron/708111563312283648" class="t">what?</a>)
+
+                  <div id="signup">
+  ${mailchimp.html}
+                  </div>
+
+                  <div class="secret-message">
+                      <a>
+                          <img src="{image:Signature}" class="nohover">
+                          <img src="{image:Signature Bright}" class="hover">
+                      </a>
+                      <div class="secret-message-content">
+                          <a href="https://blog.uncannyforest.com/post/29914344977/i-keep-boogie-on" >
+                              {text:Secret Message}
+                          </a>
+                      </div>
+                  </div>
               </div>
 
 ${likes.html}
 
 
 
-              <div class="secret-message">
-                  <a>
-                      <img src="{image:Signature}" class="nohover">
-                      <img src="{image:Signature Bright}" class="hover">
-                  </a>
-                  <div class="secret-message-content">
-                      <a href="https://blog.uncannyforest.com/post/29914344977/i-keep-boogie-on" >
-                          {text:Secret Message}
-                      </a>
-                  </div>
-              </div>
           </div>
   `
 }
