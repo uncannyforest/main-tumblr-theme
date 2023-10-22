@@ -274,6 +274,17 @@ nav ul {
     color: #fff;
     padding: .8em .8em .5em;
 }
+.subheader-container:has(.tag-list) {
+    display: none;
+}
+.subheader-container:has(.tag-list-toggle:hover)+*,  .subheader-container:has(.tag-list:hover) {
+    display: flex;
+}
+.subheader.tag-list a {
+    display: inline-block;
+    font-size: 16px;
+    padding: 0 0.6em 0.6em;
+}
 
 @media (max-device-width: 937px) or (max-width: 936px) {
     body {
@@ -343,17 +354,20 @@ ${ufSite.header}
                     <a href="{URL}" class="{Label}"><li>{Label}</li></a>
                 {/block:Pages}
                     <a href="https://blog.uncannyforest.com/tagged/my%20parakeet%20Crackers" class="crackers"><li><img src="{image:Crackers}" class='crackers' title="{text:Crackers alt text}"></li></a>
-            </ul>
-            <ul class="subheader">
-                <!--<a href="/random" class="t"><li>{lang:Random}</li></a>-->
-                <a href="/archive" class="t"><li>Archive</li></a>
-               <!-- {block:Likes}
+                    <a class="tag-list-toggle"><li>More Tags</li></a>
+                <!--
+                {block:Likes}
                      <a href="/likes" class="t"><li>{lang:Likes}</li></a>
                 {/block:Likes}
                 <a href="https://tumblr.com/followed/by/uncannyforest" class="t"><li>Following</li></a>-->
             </ul>
                         <ul class="subheader">
                 <a href="https://attentiontothesky.com" class="t serious"><li>Attention<br>to the Sky</li></a>
+            </ul>
+        </div>
+        <div class="subheader-container">
+            <ul class="subheader tag-list">
+                {text:Tag List}
             </ul>
         </div>
     </nav>
