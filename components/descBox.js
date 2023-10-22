@@ -150,7 +150,7 @@ ${mailchimp.style}
 
       .deets {
           background: url({image:Slug})
-              top 32px center / auto no-repeat
+              top 0 center / auto no-repeat
               {color:Sidebar};
       }
 
