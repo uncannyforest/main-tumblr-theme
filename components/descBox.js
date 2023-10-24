@@ -27,38 +27,6 @@ ${likes.style}
       align-content: flex-start;
       padding: 32px 0;
   }
-  .secret-message {
-      margin-left: -32px;
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-  }
-  .inner .secret-message img {
-      margin: 0 auto;
-      width: 25%;
-      display: none;
-  }
-  .secret-message a:not(:hover) img.nohover {
-      display: block;
-  }
-  .secret-message a:hover img.hover {
-      display: block;
-  }
-  .secret-message-content {
-      height: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  .secret-message-content a, .secret-message-content a:hover  {
-      color: #00000080;
-  }
-  .permalink-page #desc-box, .permalink-page .secret-message {
-      display: none;
-  }
   .sidebar-search {
       position: relative;
       display: flex;
@@ -92,7 +60,6 @@ ${likes.style}
   }
   .toggle {
     padding-left: 32px;
-    width: 50%;
     box-sizing: border-box;
   }
   .toggle:has(input:checked) {
@@ -118,6 +85,45 @@ ${likes.style}
   }
   .blog-description {
       font-style: italic;
+      margin-bottom: 80px;
+  }
+  .inner>img {
+    margin: -1em 0 -1.5em;
+  }
+  .extra-description {
+    margin: 0 0 32px;
+  }
+  .secret-message {
+      margin-left: -32px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  .inner .secret-message img {
+      margin: 0 auto;
+      width: 25%;
+      display: none;
+  }
+  .secret-message a:not(:hover) img.nohover {
+      display: block;
+  }
+  .secret-message a:hover img.hover {
+      display: block;
+  }
+  .secret-message-content {
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .secret-message-content a, .secret-message-content a:hover  {
+      color: #00000080;
+  }
+  .permalink-page #desc-box, .permalink-page .secret-message {
+      display: none;
   }
   .tree-decor {
     text-align: center;
@@ -243,7 +249,7 @@ function clickSearch() {
           <div id="desc-box" class="dark">
               <label class="toggle">
                 <input id="deets" type="radio" name="desc-box-section" checked />
-                ▸ &nbsp; About
+                ▸ &nbsp; Links
               </label>
               <div class="deets">
                   <div class="portrait">
@@ -258,12 +264,6 @@ function clickSearch() {
                   </ul>
                   <div class="blog-description" />
                       <div>{text:Short Description}</div>
-                  </div>
-                  <div class="extra-description" />
-                      {text:Extra Description}
-                  </div>
-                  <div class="extra-description" />
-                      I made this theme <i>myself</i> and I am very proud of it. if you want to use it, nag me to put it in the theme garden, maybe in <a href="/ask">my asks</a>
                   </div>
               </div>
               <label class="toggle">
@@ -292,17 +292,29 @@ function clickSearch() {
   ${mailchimp.html}
                   </div>
 
-                  <div class="secret-message">
-                      <a>
-                          <img src="{image:Signature}" class="nohover">
-                          <img src="{image:Signature Bright}" class="hover">
-                      </a>
-                      <div class="secret-message-content">
-                          <a href="https://blog.uncannyforest.com/post/29914344977/i-keep-boogie-on" >
-                              {text:Secret Message}
-                          </a>
-                      </div>
-                  </div>
+              </div>
+              <label class="toggle">
+                <input id="about" type="radio" name="desc-box-section" />
+                ▸ &nbsp; About
+              </label>
+              <div class="inner">
+                <div class="extra-description" />
+                    {text:Extra Description}
+                </div>
+                <div class="extra-description" />
+                    I made this theme <i>myself</i> and I am very proud of it. if you want to use it, nag me to put it in the theme garden, maybe in <a href="/ask">my asks</a>
+                </div>
+                <div class="secret-message">
+                    <a>
+                        <img src="{image:Signature}" class="nohover">
+                        <img src="{image:Signature Bright}" class="hover">
+                    </a>
+                    <div class="secret-message-content">
+                        <a href="https://blog.uncannyforest.com/post/29914344977/i-keep-boogie-on" >
+                            {text:Secret Message}
+                        </a>
+                    </div>
+                </div>
               </div>
 
 ${likes.html}
