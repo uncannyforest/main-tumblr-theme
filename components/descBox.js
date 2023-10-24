@@ -57,6 +57,10 @@ ${likes.style}
   .sidebar-links {
       margin-top:16px;
       margin-bottom:16px;
+      list-style: none;
+  }
+  .sidebar-links:first-child {
+    margin-top: 0;
   }
   .toggle {
     padding-left: 32px;
@@ -88,7 +92,10 @@ ${likes.style}
       margin-bottom: 80px;
   }
   .inner>img {
-    margin: -1em 0 -1.5em;
+    margin: -1em auto -1.5em;
+  }
+  .sidebar-links.email-sub {
+    display: none;
   }
   .extra-description {
     margin: 0 0 32px;
@@ -181,15 +188,15 @@ ${mailchimp.style}
 `, mobileStyle: `
 
 
-    .inner>:not(:first-child), .inner:not(.sidebar-links-container), .secret-message, .extra-description, .tag-list, .widget, #signup, .sidebar-search {
+    #signup, .widget {
         display: none;
     }
 
     #desc-box {
         display: flex;
-        gap: 32px;
+        gap: 16px;
         margin: 32px;
-        padding: 0 16px;
+        padding: 16px;
     }
 
     .deets {
@@ -197,7 +204,7 @@ ${mailchimp.style}
         display: flex;
         gap: 32px;
         align-items: center;
-        height:256px;
+        height: 256px;
     }
 
     .portrait {
@@ -218,6 +225,7 @@ ${mailchimp.style}
         text-align: end;
         display: flex;
         justify-content: flex-end;
+        margin-bottom: 0;
     }
     .blog-description>div {
         flex-basis: 30vw;
@@ -233,9 +241,23 @@ ${mailchimp.style}
         text-decoration: underline;
         text-decoration-thickness: .05em;
     }
+    .sidebar-links:first-child {
+      margin-top: 16px;
+    }
 
-    .subtext {
-        display: block;
+    .inner {
+      width: 100%
+    }
+    #searchForm>input {
+      font-size: 1.4em;
+    }
+    .sidebar-links.email-sub {
+      display: block;
+      margin-top: 32px;
+    }
+    .secret-message {
+      margin-left: 0;
+      position: static;
     }
 
 
@@ -286,8 +308,9 @@ function clickSearch() {
                 ▸ &nbsp; Subscribe
               </label>
               <div class="inner">
-                  <a href="{RSS}" class="t">RSS link for your feed reader</a> (<a href="https://www.tumblr.com/knuckleheadmcspazotron/708111563312283648" class="t">what?</a>)
-
+                  <li class="sidebar-links">
+                  <a href="{RSS}" class="t">RSS link for your feed reader</a> (<a href="https://www.tumblr.com/knuckleheadmcspazotron/708111563312283648" class="t">what?</a>)</li>
+                  <li class="sidebar-links email-sub"><a href="https://uncannyforest.com/subscribe" class="t">Subscribe via email</a></li>
                   <div id="signup">
   ${mailchimp.html}
                   </div>
