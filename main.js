@@ -161,10 +161,7 @@ a:focus, .cont a:focus {
         width: 937px;
     }
     body:not(.permalink-page) #main {
-        display: grid;
-        grid-template-columns: 562px 343px;
-        column-gap: 32px;
-        row-gap: 0px;
+        display: table;
     }
 
 ${descBox.desktopStyle}
@@ -188,8 +185,8 @@ ${permalinkPage.desktopStyle}
 }
 
 #posts {
-    grid-column: 1;
-    grid-row: 2;
+    width: 562px;
+    float: left;
 }
 
 ${permalinkPage.style}

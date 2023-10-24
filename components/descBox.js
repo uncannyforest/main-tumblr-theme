@@ -19,9 +19,8 @@ export default {
 ${likes.style}
 
   #desc-box {
-      position: relative;
-      grid-column: 2;
-      grid-row: 2;
+      position: sticky;
+      top: 32px;
       border-radius: {text:Border Radius}px;
       display: flex;
       flex-wrap: wrap;
@@ -145,7 +144,12 @@ ${mailchimp.style}
 `, desktopStyle: `
 
       #desc-box {
+          float: right;
+          width: 343px;
+          height:
           margin-bottom: 32px;
+          box-sizing: border-box;
+          height: calc(100vh - 64px);
       }
 
       .deets {
