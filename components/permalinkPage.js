@@ -1,5 +1,8 @@
 export default {
   style: `
+  .permalink-page #posts {
+      width: 100%
+  }
   .permalink-page .post {
       background-color: #fff;
       margin-bottom: 0;
@@ -16,9 +19,11 @@ export default {
   .permalink-page .post-info:not(.reblog-post) a {
       color: {color:Link};
   }
+
   .permalink-page .forest-boundary.bottom {
       background-color: #fff;
       padding-top: 0;
+          width: 100%;
   }
   .permalink-page .forest-boundary.bottom a {
       color: #000;

@@ -94,6 +94,14 @@ ${descBox.variables}
         0 0 0 1 0
       "/>
     </filter>
+    <filter id="background" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0.078125
+        0 0 0 0 0.078125
+        0 0 0 0 0.171875
+        0 0 0 1 0
+      "/>
+    </filter>
 </svg>
         <style type="text/css">
 .tmblr-iframe--follow-teaser {
@@ -283,6 +291,19 @@ nav ul {
     padding: 0 0.6em 0.6em;
 }
 
+.forest-boundary.bottom {
+    clear: left;
+    float: left;
+    width: 562px;
+}
+
+.footer .hf {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    filter: url(#background);
+}
+
 @media (max-device-width: 937px) or (max-width: 936px) {
     body {
         font-size: 4vw;
@@ -302,8 +323,15 @@ ${descBox.mobileStyle}
     #main {
         margin: 0;
     }
+    #posts {
+        width: 100%
+    }
 
 ${post.mobileStyle}
+
+    .forest-boundary.bottom {
+        width: 100%;
+    }
 
 }
 
@@ -372,62 +400,62 @@ ${ufSite.header}
 
 ${permalinkPage.compassHtml}
 
-    <div id="main">
-        {Block:IfTitle}
-            <div id="title"><a href="/" class="title">{Title}</a>{Block:IfBoogie} boogieboogie{/Block:IfBoogie}</div>
+<div id="main">
+    {Block:IfTitle}
+        <div id="title"><a href="/" class="title">{Title}</a>{Block:IfBoogie} boogieboogie{/Block:IfBoogie}</div>
 
-        {/Block:IfTitle}
+    {/Block:IfTitle}
 
 ${descBox.html}
 
-        <div id="posts">
-        {block:Posts}
+    <div id="posts">
+    {block:Posts}
 
 ${post.html}
 
-            {/block:Posts}
+        {/block:Posts}
 
-            {block:SearchPage}
-                {block:SearchResults}
-                Is this your {SearchQuery}?
-                <br /><br />
-                Please also try <a href="/tagged/{URLSafeSearchQuery}">tags</a> or <a href="https://www.google.com/search?q=site%3Auncannyforest.tumblr.com%2F+{URLSafeSearchQuery}">Google</a>.
-                <br /><br />
-                {/block:SearchResults}
+        {block:SearchPage}
+            {block:SearchResults}
+            Is this your {SearchQuery}?
+            <br /><br />
+            Please also try <a href="/tagged/{URLSafeSearchQuery}">tags</a> or <a href="https://www.google.com/search?q=site%3Auncannyforest.tumblr.com%2F+{URLSafeSearchQuery}">Google</a>.
+            <br /><br />
+            {/block:SearchResults}
 
-                {block:NoSearchResults}
-                Oops, I lost the {SearchQuery}
-                <br /><br />
-                Please also try <a href="https://www.google.com/search?q=site%3Auncannyforest.tumblr.com%2F+{URLSafeSearchQuery}">Google</a>.
-                {/block:NoSearchResults}
-            {/block:SearchPage}
+            {block:NoSearchResults}
+            Oops, I lost the {SearchQuery}
+            <br /><br />
+            Please also try <a href="https://www.google.com/search?q=site%3Auncannyforest.tumblr.com%2F+{URLSafeSearchQuery}">Google</a>.
+            {/block:NoSearchResults}
+        {/block:SearchPage}
 
 
-        </div>
     </div>
-<div class="forest-boundary bottom">
+    <div class="forest-boundary bottom">
 
-${permalinkPage.compassHtml}
+    ${permalinkPage.compassHtml}
 
-<div class="compass blog-compass">
-  <div class="item">
+    <div class="compass blog-compass">
+      <div class="item">
 
-                {block:PreviousPage}
-                    <a href="{PreviousPage}">
+                    {block:PreviousPage}
+                        <a href="{PreviousPage}">
 
-        <img class="comic-nav" src="{image:LeftNav}">Previous</a>
-                {/block:PreviousPage}
+            <img class="comic-nav" src="{image:LeftNav}">Previous</a>
+                    {/block:PreviousPage}
       </div>
-  <div class="item">
-                {block:NextPage}
-                    <a href="{NextPage}">
-                    Next
-                    <img class="comic-nav" src="{image:RightNav}"></a>
-                {/block:NextPage}
-  </div>
-  <div class="item"></div>
-</div>
-${ufSite.footer}
+      <div class="item">
+                    {block:NextPage}
+                        <a href="{NextPage}">
+                        Next
+                        <img class="comic-nav" src="{image:RightNav}"></a>
+                    {/block:NextPage}
+      </div>
+      <div class="item"></div>
+    </div>
+    ${ufSite.footer}
+    </div>
 </div>
 <script>
 ${permalinkPage.js}

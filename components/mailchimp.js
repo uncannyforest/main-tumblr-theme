@@ -52,7 +52,7 @@ export default {
       <strong>Which additional updates do you want to receive? </strong>
       <ul><li>
       <input type="checkbox" value="2" name="group[282078][2]" id="mce-group[282078]-282078-0" checked>
-      <label for="mce-group[282078]-282078-0">Gamedev posts</label>ma
+      <label for="mce-group[282078]-282078-0">Gamedev posts</label>
   </li>
   <li>
       <input type="checkbox" value="4" name="group[282078][4]" id="mce-group[282078]-282078-1" checked>

@@ -21,7 +21,7 @@ export default {
   }
 
   .hf {
-    width: 100%;
+    width: 937px;
     display: block;
   }
 

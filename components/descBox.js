@@ -1,5 +1,6 @@
 import mailchimp from './mailchimp'
 import likes from './likes'
+import ufSite from './ufSite'
 
 export default {
   variables: `
@@ -18,14 +19,19 @@ export default {
 
 ${likes.style}
 
-  #desc-box {
+  #full-sidebar {
+      border-radius: {text:Border Radius}px;
       position: sticky;
       top: 32px;
-      border-radius: {text:Border Radius}px;
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+  }
+  #desc-box {
       display: flex;
       flex-wrap: wrap;
       align-content: flex-start;
-      padding: 32px 0;
+      padding: 32px 0 0;
   }
   .sidebar-search {
       position: relative;
@@ -104,7 +110,8 @@ ${likes.style}
       margin-left: -32px;
       width: 100%;
       position: absolute;
-      bottom: 0;
+      bottom: 83px;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -129,7 +136,7 @@ ${likes.style}
   .secret-message-content a, .secret-message-content a:hover  {
       color: #00000080;
   }
-  .permalink-page #desc-box, .permalink-page .secret-message {
+  .permalink-page #full-sidebar, .permalink-page .secret-message {
       display: none;
   }
   .tree-decor {
@@ -151,18 +158,31 @@ ${likes.style}
     background-position: center;
     filter: url(#selected);
   }
+  .footer {
+    display: flex;
+    justify-content: end;
+    overflow: hidden;
+    position: relative;
+    height: 121px;
+  }
+  #full-sidebar .footer .hf {
+    right: 0;
+    left: unset;
+  }
 
 ${mailchimp.style}
 
 `, desktopStyle: `
 
-      #desc-box {
+      #full-sidebar {
           float: right;
           width: 343px;
-          height:
-          margin-bottom: 32px;
-          box-sizing: border-box;
-          height: calc(100vh - 64px);
+          height: calc(100vh - 32px - 12px);
+          background-color: {color:Sidebar};
+      }
+
+      #desc-box {
+          height: 100%;
       }
 
       .deets {
@@ -188,7 +208,7 @@ ${mailchimp.style}
 `, mobileStyle: `
 
 
-    #signup, .widget {
+    #signup, .widget, #full-sidebar .footer-container {
         display: none;
     }
 
@@ -268,6 +288,7 @@ function clickSearch() {
 }
 
 `, html: `
+      <div id="full-sidebar">
           <div id="desc-box" class="dark">
               <label class="toggle">
                 <input id="deets" type="radio" name="desc-box-section" checked />
@@ -341,9 +362,11 @@ function clickSearch() {
               </div>
 
 ${likes.html}
-
-
-
           </div>
+          <div class="footer-container">
+${ufSite.footer}
+          </div class="footer-container">
+
+      </div>
   `
 }
