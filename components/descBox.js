@@ -96,6 +96,7 @@ ${likes.style}
   .blog-description {
       font-style: italic;
       margin-bottom: 80px;
+      text-align: center;
   }
   .inner>img {
     margin: -1em auto -1.5em;
