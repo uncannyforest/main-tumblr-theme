@@ -71,15 +71,28 @@ ${likes.style}
   .toggle {
     padding-left: 32px;
     box-sizing: border-box;
+    animation-name: open-toggle;
   }
   .toggle:has(input:checked) {
-    display: none;
+      display: none;
+      animation-name: close-toggle;
+  }
+  @keyframes open-toggle {
+      from { display: block; overflow: hidden; height: 0 }
+      to { display: block; overflow: hidden; height: 24px }
+  }
+  @keyframes close-toggle {
+      from { display: block; overflow: hidden; height: 24px }
+      to { display: block; overflow: hidden; height: 0 }
   }
   .toggle input {
       display: none;
   }
-  .toggle:has(input:not(:checked))+* {
-    display: none;
+  .toggle+* {
+      animation-duration: .5s;
+  }
+  .toggle:not(:has(input:checked))+* {
+      display: none;
   }
   .sidebar-search {
       overflow: hidden;
@@ -205,6 +218,49 @@ ${mailchimp.style}
           width:inherit;
           background:none;
           margin: 32px;
+      }
+      .toggle {
+        animation-duration: .5s;
+      }
+      .toggle+.deets { animation-name: close-deets }
+      .toggle:has(input:checked)+.deets { height: 367px; animation-name: open-deets }
+      @keyframes open-deets {
+          from { display: block; overflow: hidden; height: 0 }
+          to { display: block; overflow: hidden; height: 367px }
+      }
+      @keyframes close-deets {
+          from { display: block; overflow: hidden; height: 367px }
+          to { display: block; overflow: hidden; height: 0 }
+      }
+      .toggle+:has(.sidebar-search) { animation-name: close-search }
+      .toggle:has(input:checked)+:has(.sidebar-search) { height: 363px; animation-name: open-search }
+      @keyframes open-search {
+          from { display: block; overflow: hidden; margin: 0 32px; height: 0 }
+          to { display: block; overflow: hidden; margin: 32px; height: 363px }
+      }
+      @keyframes close-search {
+          from { display: block; overflow: hidden; margin: 32px; height: 363px }
+          to { display: block; overflow: hidden; margin: 0 32px; height: 0 }
+      }
+      .toggle+:has(#signup) { animation-name: close-sub }
+      .toggle:has(input:checked)+:has(#signup) { height: 370px; animation-name: open-sub }
+      @keyframes open-sub {
+          from { display: block; overflow: hidden; margin: 0 32px; height: 0 }
+          to { display: block; overflow: hidden; margin: 32px; height: 370px }
+      }
+      @keyframes close-sub {
+          from { display: block; overflow: hidden; margin: 32px; height: 370px }
+          to { display: block; overflow: hidden; margin: 0 32px; height: 0 }
+      }
+      .toggle+:has(.extra-description) { animation-name: close-about }
+      .toggle:has(input:checked)+:has(.extra-description) { height: 370px; animation-name: open-about }
+      @keyframes open-about {
+          from { display: block; overflow: hidden; margin: 0 32px; height: 0 }
+          to { display: block; overflow: hidden; margin: 32px; height: 370px }
+      }
+      @keyframes close-about {
+          from { display: block; overflow: hidden; margin: 32px; height: 370px }
+          to { display: block; overflow: hidden; margin: 0 32px; height: 0 }
       }
 `, mobileStyle: `
 
