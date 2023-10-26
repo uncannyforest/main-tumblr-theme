@@ -280,10 +280,13 @@ nav ul {
     padding: .8em .8em .5em;
 }
 .subheader-container:has(.tag-list) {
-    display: none;
+    overflow: hidden;
+    transition: height .5s;
+    height: 0;
+    display: flex;
 }
 .subheader-container:has(.tag-list-toggle:hover)+*,  .subheader-container:has(.tag-list:hover) {
-    display: flex;
+    height: 36px;
 }
 .subheader.tag-list a {
     display: inline-block;
