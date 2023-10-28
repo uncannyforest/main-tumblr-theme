@@ -21,6 +21,7 @@ ${likes.style}
 
   #full-sidebar {
       border-radius: {text:Border Radius}px;
+      overflow: hidden;
       position: sticky;
       top: 32px;
       display: flex;

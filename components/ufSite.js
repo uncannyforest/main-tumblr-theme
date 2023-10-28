@@ -59,8 +59,6 @@ export default {
     list-style: none;
     display: flex;
     justify-content: space-around;
-    margin-top: 15px;
-    margin-bottom: 15px;
   }
   .map img {
     height: 30px;

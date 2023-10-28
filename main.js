@@ -164,6 +164,15 @@ a:focus, .cont a:focus {
     text-align: left;
 }
 
+nav {
+  overflow: hidden;
+}
+
+nav ul.map {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 @media (min-device-width: 937px) and  (min-width: 937px) {
     #main {
         width: 937px;
@@ -182,7 +191,7 @@ ${permalinkPage.desktopStyle}
         border-radius: {text:Border Radius}px;
     }
     body:not(.permalink-page) nav {
-        /*border-radius: 0 0 {text:Border Radius}px {text:Border Radius}px;*/
+        border-radius: 0 0 {text:Border Radius}px {text:Border Radius}px;
     }
 }
 
@@ -250,7 +259,7 @@ img.crackers {
         width: 937px;
     }
 }
-nav {
+nav>img, nav>.map {
     background-color: #fff;
     display: flex;
     flex-wrap: wrap;
@@ -298,6 +307,7 @@ nav ul {
     clear: left;
     float: left;
     width: 562px;
+    border-radius: {text:Border Radius}px;
 }
 
 .footer .hf {
