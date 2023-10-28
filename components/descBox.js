@@ -388,7 +388,7 @@ function clickSearch() {
               </label>
               <div class="inner">
                   <li class="sidebar-links">
-                  <a href="{RSS}" class="t">RSS for your feed reader</a> (<a href="{RSS}" class="t">RSS for your feed reader</a> (<a href="https://www.tumblr.com/knuckleheadmcspazotron/708111563312283648" class="t">what</a>? <a href="https://neil-gaiman.tumblr.com/post/732431665490755584" class="t">how</a>?)</li>
+                  <a href="{RSS}" class="t">RSS for your feed reader</a> (<a href="https://www.tumblr.com/knuckleheadmcspazotron/708111563312283648" class="t">what</a>? <a href="https://neil-gaiman.tumblr.com/post/732431665490755584" class="t">how</a>?)</li>
                   <li class="sidebar-links email-sub"><a href="https://uncannyforest.com/subscribe" class="t">Subscribe via email</a></li>
                   <div id="signup">
   ${mailchimp.html}
